@@ -1,0 +1,6 @@
+#!/bin/bash
+rm bin/pong
+g++ -c main.cpp
+g++ main.o -o bin/pong -lsfml-graphics -lsfml-window -lsfml-system
+rm main.o
+./bin/pong
