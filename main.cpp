@@ -1,6 +1,19 @@
+#include <iostream>
+#include <math.h> 
 #include <SFML/Graphics.hpp>
 #include <sstream>
 #include <typeinfo>
+
+#define PI 3.14159265
+
+void calcBallMovement(sf::Vector2f *actualMovement, float direction, float speed, float dt)
+{
+    float mx = cos(direction*PI/180)*speed;
+    float my = sin(direction*PI/180)*speed;
+
+    actualMovement->x = mx*dt;
+    actualMovement->y = my*dt;
+}
 
 int main()
 {
@@ -33,6 +46,7 @@ int main()
     sf::CircleShape ball(50.f);
     ball.setFillColor(sf::Color::Cyan);
     ball.setPosition( (WWidth/2)-50, (WHeight/2)-50 );
+    sf::Vector2f ballMovement(0.f,0.f);
 
     // Debug text
     sf::Font font;
@@ -91,7 +105,8 @@ int main()
         player2.move(player2Movement);
 
         // Move Ball
-        
+        calcBallMovement(&ballMovement, 123, 200, dt);
+        ball.move(ballMovement);
 
         // Draw debug text
         text.setCharacterSize(30);
